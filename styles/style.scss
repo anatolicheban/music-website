@@ -148,7 +148,7 @@ body {
 
 .banner {
   position: relative;
-  aspect-ratio: 144 / 94;
+  height: 940px;
   > img {
     width: 100%;
     height: 100%;
@@ -206,7 +206,7 @@ body {
   > .container {
     color: #fff;
     display: grid;
-    grid-template-columns: 1fr 612px;
+    grid-template-columns: 1fr minmax(0, 612px);
     gap: 60px 16px;
     > div {
       h3 {
@@ -228,9 +228,20 @@ body {
         line-height: 1.6;
         letter-spacing: -0.03em;
       }
-      a {
+      #hidden-text {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.5s;
+      }
+      button {
         width: fit-content;
         margin-top: 33px;
+        padding: 0;
+        background: none;
+        border: none;
+        &.hide {
+          display: none;
+        }
         img {
           transform: rotate(-90deg);
         }
@@ -241,7 +252,7 @@ body {
 
 .corrects {
   margin-top: 200px;
-  > h3 {
+  .container > h3 {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
@@ -266,7 +277,7 @@ body {
       .item-header,
       .item-content {
         display: grid;
-        grid-template-columns: 1fr 612px;
+        grid-template-columns: 1fr minmax(0, 612px);
       }
       .item-header {
         align-items: center;
@@ -276,6 +287,7 @@ body {
           font-size: 16px;
           font-weight: 600;
           line-height: 1;
+          color: #828282;
           letter-spacing: -0.03em;
         }
         > div {
@@ -313,7 +325,7 @@ body {
 }
 
 .listen {
-  margin-top: 200px;
+  padding-top: 200px;
   h2 {
     font-size: 50px;
     font-weight: 600;
@@ -361,7 +373,7 @@ body {
 }
 
 .videos {
-  margin-top: 200px;
+  padding-top: 200px;
   h2 {
     text-transform: uppercase;
     font-size: 50px;
@@ -422,7 +434,7 @@ body {
 }
 
 .download {
-  margin-top: 200px;
+  padding-top: 200px;
   h2 {
     text-transform: uppercase;
     font-size: 50px;
@@ -459,7 +471,7 @@ footer {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.7;
-  color: #fff;
+  color: #747171;
   letter-spacing: -0.06em;
   border-top: 1px solid #333333;
   .container {
@@ -471,7 +483,7 @@ footer {
       align-items: center;
       gap: 130px;
       a {
-        color: #fff;
+        color: #747171;
         text-decoration: none;
       }
     }

@@ -4,11 +4,69 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="icon" type="image/svg" href="/icons/favicon.svg" />
+    <title>IY – 7 Keys. Sound Practice</title>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym",
+      );
+
+      ym(97648797, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZPLDXHTHQS"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-ZPLDXHTHQS");
+    </script>
   </head>
   <body>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/97648797"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
     <section class="banner">
-      <img src="/images/banner.jpg" alt="banner" />
+      <img src="/images/banner.png" alt="banner" />
       <div class="container">
         <header class="main-header">
           <!--        <div class="container">-->
@@ -22,19 +80,19 @@
           <!--        </div>-->
         </header>
         <nav>
-          <a href="#" class="wow-hover">
+          <a href="#seven-keys" class="wow-hover">
             <span>Explore</span>
             <span class="hovered">Explore</span>
           </a>
-          <a href="#" class="wow-hover">
+          <a href="#listen" class="wow-hover">
             <span>Listen</span>
             <span class="hovered">Listen</span>
           </a>
-          <a href="#" class="wow-hover">
+          <a href="#watch" class="wow-hover">
             <span>Watch</span>
             <span class="hovered">Watch</span>
           </a>
-          <a href="#" class="wow-hover">
+          <a href="#download" class="wow-hover">
             <span>Download</span>
             <span class="hovered">Download</span>
           </a>
@@ -89,13 +147,27 @@
             ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget,
             posuere ut, mauris. Praesent adipiscing.
           </p>
-          <a href="#" class="underline arrow-hover horizontal">
+          <div id="hidden-text">
+            <p>
+              <br />
+              Quis gravida magna mi a libero. Fusce vulputate eleifend sapien.
+              Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id,
+              metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis
+              hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci
+              luctus et ultrices posuere cubilia Curae; In ac dui quis mi
+              consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu
+              tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.
+              Sed aliquam ultrices mauris. Integer ante arcu, accumsan a,
+              consectetuer eget, posuere ut, mauris. Praesent adipiscing.
+            </p>
+          </div>
+          <button id="show-hidden" class="underline arrow-hover horizontal">
             Read more
             <span class="wrap">
               <img src="/icons/arrow.svg" alt="arrow" />
               <img src="/icons/arrow.svg" alt="arrow" class="hovered" />
             </span>
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -103,7 +175,7 @@
       <div class="container">
         <h3>Corrects</h3>
         <div class="corrects-items">
-          <div class="item">
+          <div class="item open">
             <div class="item-header glass-hover">
               <span>01</span>
               <div>
@@ -351,7 +423,7 @@
         </div>
       </div>
     </section>
-    <section class="listen">
+    <section id="listen" class="listen">
       <div class="container">
         <h2>Listen 7 keys on</h2>
       </div>
@@ -396,7 +468,7 @@
         </div>
       </div>
     </section>
-    <section class="videos">
+    <section id="watch" class="videos">
       <div class="container">
         <h2>7 keys on Youtube</h2>
         <div class="videos-items">
@@ -457,7 +529,7 @@
         </div>
       </div>
     </section>
-    <section class="download">
+    <section id="download" class="download">
       <div class="container">
         <h2>download mp3</h2>
         <div class="songs">
