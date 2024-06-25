@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -21,6 +25,7 @@ ol {
 
 img {
   display: block;
+  object-position: center;
 }
 
 button,
