@@ -1,14 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "normalize";
+@import "vars";
 
 .container {
-  max-width: 1072px;
-  padding: 0 16px;
+  max-width: 1108px;
+  padding: 0 34px;
   margin: 0 auto;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -65,6 +67,7 @@ body {
     transform: translateY(0);
   }
   &:before {
+    pointer-events: none;
     transition: transform 0.25s;
     top: 0;
     left: 0;
@@ -113,22 +116,71 @@ body {
 .main-header {
   padding-top: 40px;
   position: relative;
-  //position: absolute;
-  //top: 0;
-  //left: 0;
-  //width: 100%;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //.container {
-  //display: flex;
-  //align-items: center;
-  //justify-content: space-between;
+  @media (max-width: $tablet) {
+    padding: 40px 0 20px;
+  }
+  > a {
+    z-index: 2;
+  }
+  #menu-btn {
+    display: none;
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 2;
+    span {
+      display: block;
+      background: #fff;
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      transition: transform 0.25s;
+      &:first-child {
+        top: 11px;
+      }
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &:last-child {
+        bottom: 11px;
+      }
+    }
+    &.active {
+      span {
+        &:first-child {
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+        &:nth-child(2) {
+          transform: translateY(-50%) scale(0);
+        }
+        &:last-child {
+          top: 50%;
+          transform: translateY(-50%) rotate(-45deg);
+        }
+      }
+    }
+    @media (max-width: $tablet) {
+      display: block;
+    }
+  }
   .langs {
     display: flex;
     align-items: center;
     gap: 32px;
+    @media (max-width: $tablet) {
+      &:not(.mobile) {
+        display: none;
+      }
+    }
     a {
       font-size: 14px;
       font-weight: 600;
@@ -146,9 +198,62 @@ body {
   //}
 }
 
+.mobile-aside {
+  display: none;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  //gap: 90px;
+  left: 0;
+  bottom: 100%;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  padding-top: 95px;
+  &.open {
+    transform: translateY(100%);
+  }
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 90px;
+    a {
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.9;
+      letter-spacing: -0.03em;
+    }
+  }
+  .langs {
+    gap: 52px;
+    margin-top: 90px;
+    @media (max-height: 700px) {
+      margin-top: 2vh;
+    }
+  }
+  .aside-footer {
+    width: 100%;
+    align-self: end;
+    //margin: 0;
+    margin-top: auto;
+  }
+  @media (max-width: $tablet) {
+    display: flex;
+  }
+}
+
 .banner {
   position: relative;
   height: 940px;
+  @media (max-width: $tablet) {
+    height: 871px;
+  }
   > img {
     width: 100%;
     height: 100%;
@@ -157,6 +262,9 @@ body {
     left: 0;
     object-fit: cover;
     object-position: center 10%;
+    @media (max-width: $tablet) {
+      object-position: center;
+    }
   }
   > .container {
     position: relative;
@@ -166,12 +274,18 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 146px;
+    @media (max-width: $tablet) {
+      padding-bottom: 93px;
+    }
     nav {
       display: flex;
       flex-direction: column;
       align-items: end;
       gap: 24px;
       padding-top: 24px;
+      @media (max-width: $tablet) {
+        display: none;
+      }
       a {
         text-transform: uppercase;
         color: #fff;
@@ -186,6 +300,11 @@ body {
       display: flex;
       align-items: end;
       justify-content: space-between;
+      @media (max-width: $tablet) {
+        flex-direction: column;
+        align-items: start;
+        gap: 55px;
+      }
       h1 {
         text-transform: uppercase;
         color: #fff;
@@ -193,6 +312,9 @@ body {
         font-weight: 600;
         line-height: 1;
         letter-spacing: -0.03em;
+        @media (max-width: $tablet) {
+          font-size: 60px;
+        }
       }
       a {
         margin-bottom: 0.8em;
@@ -208,6 +330,9 @@ body {
     display: grid;
     grid-template-columns: 1fr minmax(0, 612px);
     gap: 60px 16px;
+    @media (max-width: 1000px) {
+      display: block;
+    }
     > div {
       h3 {
         text-transform: uppercase;
@@ -215,18 +340,27 @@ body {
         font-weight: 600;
         line-height: 1;
         letter-spacing: -0.03em;
+        @media (max-width: $tablet) {
+          font-size: 45px;
+        }
       }
       .text {
         max-width: 310px;
         font-weight: 500;
         line-height: 1.4;
         letter-spacing: -0.03em;
+        @media (max-width: 1000px) {
+          margin-top: 30px;
+        }
       }
       p:not(.text) {
         color: #828282;
         font-weight: 500;
         line-height: 1.6;
         letter-spacing: -0.03em;
+        @media (max-width: 1000px) {
+          margin-top: 40px;
+        }
       }
       #hidden-text {
         height: 0;
@@ -239,6 +373,9 @@ body {
         padding: 0;
         background: none;
         border: none;
+        @media (max-width: $tablet) {
+          margin-top: 40px;
+        }
         &.hide {
           display: none;
         }
@@ -252,6 +389,9 @@ body {
 
 .corrects {
   margin-top: 200px;
+  @media (max-width: $tablet) {
+    margin-top: 120px;
+  }
   .container > h3 {
     text-transform: uppercase;
     font-size: 14px;
@@ -261,10 +401,13 @@ body {
   }
   .corrects-items {
     margin-top: 20px;
+    @media (max-width: $tablet) {
+      margin-top: 40px;
+    }
     .item {
-      &:not(:first-child) {
-        border-top: 1px solid #333333;
-      }
+      //&:not(:first-child) {
+      border-bottom: 1px solid #333333;
+      //}
       &.open {
         .item-header {
           > div {
@@ -283,6 +426,10 @@ body {
         align-items: center;
         padding: 40px 0;
         cursor: pointer;
+        @media (max-width: $tablet) {
+          padding: 8px 0 32px;
+          display: block;
+        }
         span {
           font-size: 16px;
           font-weight: 600;
@@ -294,11 +441,18 @@ body {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          @media (max-width: $tablet) {
+            margin-top: 20px;
+            align-items: start;
+          }
           h3 {
             font-size: 21px;
             font-weight: 600;
             line-height: 1;
             letter-spacing: -0.03em;
+            @media (max-width: $tablet) {
+              max-width: 271px;
+            }
           }
           img {
             transition: transform 0.4s;
@@ -326,18 +480,33 @@ body {
 
 .listen {
   padding-top: 200px;
+  @media (max-width: $tablet) {
+    padding-top: 120px;
+  }
   h2 {
     font-size: 50px;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
     text-transform: uppercase;
+    @media (max-width: $tablet) {
+      font-size: 45px;
+    }
   }
   .list {
     margin-top: 60px;
+    @media (max-width: $tablet) {
+      margin-top: 40px;
+      overflow-x: auto;
+      @include hide-scroll;
+    }
     .listen-items {
       display: flex;
       align-items: center;
+      @media (max-width: $tablet) {
+        min-width: 1040px;
+        padding-bottom: 40px;
+      }
       .l-item {
         //flex-shrink: 0;
         flex-basis: calc(20% - 6px);
@@ -374,73 +543,120 @@ body {
 
 .videos {
   padding-top: 200px;
+  @media (max-width: $tablet) {
+    padding-top: 120px;
+  }
   h2 {
     text-transform: uppercase;
     font-size: 50px;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
+    @media (max-width: $tablet) {
+      font-size: 45px;
+    }
+  }
+  a {
+    cursor: pointer;
+    &:hover .backdrop {
+      opacity: 1;
+    }
+  }
+  .video-single {
+    position: relative;
+    aspect-ratio: 246 / 175;
+    padding: 19px;
+    text-decoration: none;
+
+    > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    p {
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 11.13px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: -0.04em;
+    }
+    .backdrop {
+      transition: opacity 0.25s;
+      background: rgba(#090909, 0.74);
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+      right: 0;
+    }
   }
   .videos-items {
     margin-top: 60px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    a {
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+  .videos-swiper {
+    margin-top: 40px;
+    display: none;
+    overflow: initial;
+    @media (max-width: $tablet) {
+      display: flex;
+    }
+  }
+  .videos-pagination {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 42px;
+    span {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #afb0b3;
+      transition:
+        background-color 0.25s,
+        transfrom 0.25s;
       cursor: pointer;
-      &:hover .backdrop {
-        opacity: 1;
+      &.active {
+        transform: scale(1.5);
+        background: #fff;
       }
     }
-    > a,
-    > div {
-      position: relative;
-      aspect-ratio: 246 / 175;
-      padding: 19px;
-      text-decoration: none;
-
-      > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      p {
-        gap: 8px;
-        position: relative;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-        color: #fff;
-        font-size: 11.13px;
-        font-weight: 600;
-        line-height: 1.5;
-        letter-spacing: -0.04em;
-      }
-      .backdrop {
-        transition: opacity 0.25s;
-        background: rgba(#090909, 0.74);
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        opacity: 0;
-        right: 0;
-      }
+    @media (max-width: $tablet) {
+      display: flex;
     }
   }
 }
 
 .download {
   padding-top: 200px;
+  @media (max-width: $tablet) {
+    padding-top: 120px;
+  }
   h2 {
     text-transform: uppercase;
     font-size: 50px;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
+    @media (max-width: $tablet) {
+      font-size: 45px;
+    }
   }
   .songs {
     margin-top: 20px;
@@ -474,14 +690,32 @@ footer {
   color: #747171;
   letter-spacing: -0.06em;
   border-top: 1px solid #333333;
+  @media (max-width: $tablet) {
+    margin-top: 120px;
+    border-top: none;
+    padding: 0 0 60px;
+  }
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: $tablet) {
+      flex-direction: column-reverse;
+      > span {
+        margin-top: 40px;
+      }
+    }
     .socials {
       display: flex;
       align-items: center;
       gap: 130px;
+      @media (max-width: $tablet) {
+        padding-bottom: 20px;
+        width: 100%;
+        border-bottom: 1px solid #333333;
+        gap: 0;
+        justify-content: space-between;
+      }
       a {
         color: #747171;
         text-decoration: none;
