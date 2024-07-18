@@ -55,8 +55,15 @@ showButton.addEventListener("click", () => {
 });
 
 const vSwiper = new Swiper(".videos-swiper.swiper", {
-  slidesPerView: 2.4,
+  slidesPerView: 1.25,
   spaceBetween: 20,
+  centeredSlides: true,
+  breakpoints: {
+    501: {
+      centeredSlides: false,
+      slidesPerView: 2.4,
+    },
+  },
 });
 
 const vPagination = Array.from(
@@ -82,14 +89,16 @@ menuButton.addEventListener("click", () => {
   window.scrollTo(0, 0);
   menuButton.classList.toggle("active");
   aside.classList.toggle("open");
-  document.documentElement.style.overflow =
-    document.documentElement.style.overflow === "hidden" ? "initial" : "hidden";
+  document.documentElement.style["overflow-y"] =
+    document.documentElement.style["overflow-y"] === "hidden"
+      ? "initial"
+      : "hidden";
 
   aside.querySelectorAll("a").forEach((el) => {
     el.addEventListener("click", () => {
       menuButton.classList.remove("active");
       aside.classList.remove("open");
-      document.documentElement.style.overflow = "initial";
+      document.documentElement.style["overflow-y"] = "initial";
     });
   });
 });

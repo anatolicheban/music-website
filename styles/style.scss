@@ -6,17 +6,24 @@
   max-width: 1108px;
   padding: 0 34px;
   margin: 0 auto;
+  @media (max-width: $mobile) {
+    padding: 0 31px;
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
   background: #000;
   font-family: Manrope, sans-serif;
   color: #fff;
+}
+html,
+body {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .underline {
@@ -46,8 +53,10 @@ body {
 .wow-hover {
   position: relative;
   overflow: hidden;
-  &:hover span {
-    transform: translateY(-100%);
+  @media (min-width: 1001px) {
+    &:hover span {
+      transform: translateY(-100%);
+    }
   }
   span {
     display: block;
@@ -63,8 +72,24 @@ body {
 .glass-hover {
   position: relative;
   overflow: hidden;
-  &:hover::before {
-    transform: translateY(0);
+  @media (min-width: 1001px) {
+    &:hover {
+      &::before {
+        transform: translateY(0);
+      }
+      //TEMP
+      > .arrow-hover {
+        img {
+          transition: transform 0.4s;
+          transform: translateY(100%);
+        }
+        &.horizontal {
+          img {
+            transform: translateX(100%) rotate(-90deg);
+          }
+        }
+      }
+    }
   }
   &:before {
     pointer-events: none;
@@ -81,10 +106,12 @@ body {
 }
 
 .arrow-hover {
-  &:hover {
-    img {
-      transition: transform 0.4s;
-      transform: translateY(100%);
+  @media (min-width: 1001px) {
+    &:hover {
+      img {
+        transition: transform 0.4s;
+        transform: translateY(100%);
+      }
     }
   }
   &.horizontal {
@@ -96,9 +123,11 @@ body {
         position: absolute;
       }
     }
-    &:hover {
-      img {
-        transform: translateX(100%) rotate(-90deg);
+    @media (min-width: 1001px) {
+      &:hover {
+        img {
+          transform: translateX(100%) rotate(-90deg);
+        }
       }
     }
   }
@@ -122,6 +151,9 @@ body {
   justify-content: space-between;
   @media (max-width: $tablet) {
     padding: 40px 0 20px;
+  }
+  @media (max-width: $mobile) {
+    padding: 30px 0 0;
   }
   > a {
     z-index: 2;
@@ -205,21 +237,27 @@ body {
   align-items: center;
   //gap: 90px;
   left: 0;
-  bottom: 100%;
+  top: 0;
   background: #000;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s;
-  padding-top: 95px;
-  &.open {
-    transform: translateY(100%);
+  padding-top: 75px;
+  overflow-y: auto;
+  @media (max-width: $tablet) {
+    &.open {
+      display: flex;
+    }
+  }
+  @media (max-width: $mobile) {
+    padding-top: 65px;
   }
   .navigation {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 90px;
+    gap: 10px;
+    margin: 90px 0 0;
     a {
       color: #fff;
       text-decoration: none;
@@ -232,19 +270,28 @@ body {
   }
   .langs {
     gap: 52px;
-    margin-top: 90px;
-    @media (max-height: 700px) {
-      margin-top: 2vh;
+    margin: 90px 0 243px;
+    @media (max-width: $mobile) {
+      margin: 70px 0 120px;
     }
   }
   .aside-footer {
     width: 100%;
     align-self: end;
-    //margin: 0;
     margin-top: auto;
-  }
-  @media (max-width: $tablet) {
-    display: flex;
+    @media (max-width: $mobile) {
+      padding-bottom: 70px;
+      .container {
+        > span {
+          display: none;
+        }
+      }
+      .socials {
+        gap: 10px;
+        padding-top: 40px;
+        border-top: 1px solid #333333;
+      }
+    }
   }
 }
 
@@ -254,13 +301,17 @@ body {
   @media (max-width: $tablet) {
     height: 871px;
   }
+  @media (max-width: $mobile) {
+    height: 722px;
+  }
   > img {
-    width: 100%;
+    //width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: contain;
     object-position: center 10%;
     @media (max-width: $tablet) {
       object-position: center;
@@ -276,6 +327,9 @@ body {
     padding-bottom: 146px;
     @media (max-width: $tablet) {
       padding-bottom: 93px;
+    }
+    @media (max-width: $mobile) {
+      padding-bottom: 46px;
     }
     nav {
       display: flex;
@@ -315,6 +369,9 @@ body {
         @media (max-width: $tablet) {
           font-size: 60px;
         }
+        @media (max-width: $mobile) {
+          font-size: 50px;
+        }
       }
       a {
         margin-bottom: 0.8em;
@@ -324,7 +381,12 @@ body {
 }
 
 .site-intro {
-  padding-top: 150px;
+  margin-top: 75px;
+  padding-top: 75px;
+  @media (max-width: $mobile) {
+    margin-top: 52.5px;
+    padding-top: 52.5px;
+  }
   > .container {
     color: #fff;
     display: grid;
@@ -334,6 +396,13 @@ body {
       display: block;
     }
     > div {
+      &.txt-div {
+        > p:first-child {
+          @media (max-width: 1000px) {
+            padding-top: 40px;
+          }
+        }
+      }
       h3 {
         text-transform: uppercase;
         font-size: 50px;
@@ -342,6 +411,9 @@ body {
         letter-spacing: -0.03em;
         @media (max-width: $tablet) {
           font-size: 45px;
+        }
+        @media (max-width: $mobile) {
+          font-size: 35px;
         }
       }
       .text {
@@ -352,15 +424,15 @@ body {
         @media (max-width: 1000px) {
           margin-top: 30px;
         }
+        @media (max-width: $mobile) {
+          margin-top: 20px;
+        }
       }
       p:not(.text) {
         color: #828282;
         font-weight: 500;
         line-height: 1.6;
         letter-spacing: -0.03em;
-        @media (max-width: 1000px) {
-          margin-top: 40px;
-        }
       }
       #hidden-text {
         height: 0;
@@ -392,6 +464,9 @@ body {
   @media (max-width: $tablet) {
     margin-top: 120px;
   }
+  @media (max-width: $mobile) {
+    margin-top: 100px;
+  }
   .container > h3 {
     text-transform: uppercase;
     font-size: 14px;
@@ -404,9 +479,19 @@ body {
     @media (max-width: $tablet) {
       margin-top: 40px;
     }
+    @media (max-width: $tablet) {
+      margin-top: 10px;
+    }
     .item {
       //&:not(:first-child) {
       border-bottom: 1px solid #333333;
+      //}
+      //&:first-child {
+      //  .item-header {
+      //    @media (max-width: $mobile) {
+      //      padding-top: 0;
+      //    }
+      //  }
       //}
       &.open {
         .item-header {
@@ -424,11 +509,14 @@ body {
       }
       .item-header {
         align-items: center;
-        padding: 40px 0;
+        padding: 40px 20px;
         cursor: pointer;
         @media (max-width: $tablet) {
           padding: 8px 0 32px;
           display: block;
+        }
+        @media (max-width: $mobile) {
+          padding: 26px 0;
         }
         span {
           font-size: 16px;
@@ -470,7 +558,7 @@ body {
             line-height: 1.7;
             letter-spacing: -0.03em;
             color: #828282;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
           }
         }
       }
@@ -483,6 +571,9 @@ body {
   @media (max-width: $tablet) {
     padding-top: 120px;
   }
+  @media (max-width: $mobile) {
+    padding-top: 100px;
+  }
   h2 {
     font-size: 50px;
     font-weight: 600;
@@ -491,6 +582,9 @@ body {
     text-transform: uppercase;
     @media (max-width: $tablet) {
       font-size: 45px;
+    }
+    @media (max-width: $mobile) {
+      font-size: 35px;
     }
   }
   .list {
@@ -509,10 +603,15 @@ body {
       }
       .l-item {
         //flex-shrink: 0;
-        flex-basis: calc(20% - 6px);
+        flex-basis: calc(16.2% - 6px);
         width: 231px;
         height: 231px;
         position: relative;
+        @media (max-width: $mobile) {
+          width: 195px;
+          height: 195px;
+          flex-basis: calc(18% - 6px);
+        }
         &:hover {
           .item-wrap {
             z-index: 2;
@@ -535,6 +634,18 @@ body {
           justify-content: center;
           border: 1px solid #333333;
           background: #000;
+          @media (max-width: $mobile) {
+            width: 195px;
+            height: 195px;
+          }
+          .wrap {
+            img {
+              @media (max-width: $mobile) {
+                max-width: 133px;
+                max-height: 21px;
+              }
+            }
+          }
         }
       }
     }
@@ -546,6 +657,9 @@ body {
   @media (max-width: $tablet) {
     padding-top: 120px;
   }
+  @media (max-width: $mobile) {
+    padding-top: 100px;
+  }
   h2 {
     text-transform: uppercase;
     font-size: 50px;
@@ -554,6 +668,9 @@ body {
     letter-spacing: -0.03em;
     @media (max-width: $tablet) {
       font-size: 45px;
+    }
+    @media (max-width: $mobile) {
+      font-size: 35px;
     }
   }
   a {
@@ -567,6 +684,9 @@ body {
     aspect-ratio: 246 / 175;
     padding: 19px;
     text-decoration: none;
+    @media (max-width: $mobile) {
+      padding: 24px;
+    }
 
     > img {
       position: absolute;
@@ -583,7 +703,7 @@ body {
       display: flex;
       align-items: center;
       color: #fff;
-      font-size: 11.13px;
+      font-size: 14px;
       font-weight: 600;
       line-height: 1.5;
       letter-spacing: -0.04em;
@@ -622,6 +742,9 @@ body {
     justify-content: center;
     gap: 12px;
     margin-top: 42px;
+    @media (max-width: $mobile) {
+      margin-top: 30px;
+    }
     span {
       display: block;
       width: 6px;
@@ -648,6 +771,9 @@ body {
   @media (max-width: $tablet) {
     padding-top: 120px;
   }
+  @media (max-width: $mobile) {
+    padding-top: 100px;
+  }
   h2 {
     text-transform: uppercase;
     font-size: 50px;
@@ -657,17 +783,28 @@ body {
     @media (max-width: $tablet) {
       font-size: 45px;
     }
+    @media (max-width: $mobile) {
+      font-size: 35px;
+    }
   }
   .songs {
     margin-top: 20px;
     > a {
       text-decoration: none;
-      padding: 40px 0;
+      padding: 40px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       &:not(:first-child) {
         border-top: 1px solid #333333;
+      }
+      &:last-child {
+        border-bottom: 1px solid #333333;
+      }
+      @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: start;
+        gap: 16px;
       }
 
       h3 {
@@ -690,10 +827,16 @@ footer {
   color: #747171;
   letter-spacing: -0.06em;
   border-top: 1px solid #333333;
+  @media (max-width: $mobile) {
+    margin-top: 100px;
+  }
   @media (max-width: $tablet) {
     margin-top: 120px;
     border-top: none;
     padding: 0 0 60px;
+  }
+  @media (max-width: $mobile) {
+    padding-bottom: 80px;
   }
   .container {
     display: flex;
@@ -703,6 +846,11 @@ footer {
       flex-direction: column-reverse;
       > span {
         margin-top: 40px;
+      }
+    }
+    @media (max-width: $mobile) {
+      > span {
+        margin-top: 50px;
       }
     }
     .socials {
@@ -715,6 +863,12 @@ footer {
         border-bottom: 1px solid #333333;
         gap: 0;
         justify-content: space-between;
+      }
+      @media (max-width: $mobile) {
+        flex-direction: column;
+        gap: 20px;
+        border: none;
+        padding: 0;
       }
       a {
         color: #747171;
