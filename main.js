@@ -16,9 +16,9 @@ corrects.forEach((item, i) => {
       (item.classList.contains("open") ? heights[i] : 0) + "px";
   };
   window.addEventListener("resize", calcHeight);
-  calcHeight();
+  setTimeout(calcHeight, 500);
 
-  header.addEventListener("click", () => {
+  item.addEventListener("click", () => {
     item.classList.toggle("open");
     corrects.forEach((el) => {
       const wrap = el.querySelector(".item-wrap");
@@ -31,28 +31,32 @@ corrects.forEach((item, i) => {
   });
 });
 
-const hiddenText = document.getElementById("hidden-text");
-const showButton = document.getElementById("show-hidden");
-const hWrap = hiddenText.querySelector("p");
+try {
+  const hiddenText = document.getElementById("hidden-text");
+  const showButton = document.getElementById("show-hidden");
+  const hWrap = hiddenText.querySelector("p");
 
-let hiddenHeight = hWrap.clientHeight;
+  let hiddenHeight = hWrap.clientHeight;
 
-const calcHeight = () => {
-  hiddenHeight = hWrap.clientHeight;
-  hiddenText.classList.contains("open")
-    ? (hiddenHeight.style.height = hiddenHeight + "px")
-    : "0";
-};
+  const calcHeight = () => {
+    hiddenHeight = hWrap.clientHeight;
+    hiddenText.classList.contains("open")
+      ? (hiddenHeight.style.height = hiddenHeight + "px")
+      : "0";
+  };
 
-window.addEventListener("resize", calcHeight);
+  window.addEventListener("resize", calcHeight);
 
-showButton.addEventListener("click", () => {
-  hiddenText.classList.toggle("open");
-  showButton.classList.add("hide");
-  hiddenText.classList.contains("open")
-    ? (hiddenText.style.height = hiddenHeight + "px")
-    : "0";
-});
+  showButton.addEventListener("click", () => {
+    hiddenText.classList.toggle("open");
+    showButton.classList.add("hide");
+    hiddenText.classList.contains("open")
+      ? (hiddenText.style.height = hiddenHeight + "px")
+      : "0";
+  });
+} catch (e) {
+  console.log(e);
+}
 
 const vSwiper = new Swiper(".videos-swiper.swiper", {
   slidesPerView: 1.25,
@@ -65,6 +69,8 @@ const vSwiper = new Swiper(".videos-swiper.swiper", {
     },
   },
 });
+
+vSwiper.slideTo(1);
 
 const vPagination = Array.from(
   document.querySelectorAll(".videos-pagination span"),
@@ -86,6 +92,7 @@ const menuButton = document.getElementById("menu-btn");
 const aside = document.querySelector(".mobile-aside");
 
 menuButton.addEventListener("click", () => {
+  console.log("!");
   window.scrollTo(0, 0);
   menuButton.classList.toggle("active");
   aside.classList.toggle("open");

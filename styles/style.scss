@@ -383,6 +383,11 @@ body {
 .site-intro {
   margin-top: 75px;
   padding-top: 75px;
+  @media (max-width: $tablet) {
+    //margin-top: 35px;
+    margin-top: 0;
+    //padding-top: 35px;
+  }
   @media (max-width: $mobile) {
     margin-top: 52.5px;
     padding-top: 52.5px;
@@ -390,7 +395,7 @@ body {
   > .container {
     color: #fff;
     display: grid;
-    grid-template-columns: 1fr minmax(0, 612px);
+    grid-template-columns: 1fr minmax(0, 632px);
     gap: 60px 16px;
     @media (max-width: 1000px) {
       display: block;
@@ -460,7 +465,7 @@ body {
 }
 
 .corrects {
-  margin-top: 200px;
+  margin-top: 140px;
   @media (max-width: $tablet) {
     margin-top: 120px;
   }
@@ -505,8 +510,21 @@ body {
       .item-header,
       .item-content {
         display: grid;
+      }
+      .item-header {
         grid-template-columns: 1fr minmax(0, 612px);
       }
+      .item-content {
+        grid-template-columns: 1fr minmax(0, 632px);
+        @media (max-width: $tablet) {
+          display: block;
+
+          > div:first-child {
+            display: none;
+          }
+        }
+      }
+
       .item-header {
         align-items: center;
         padding: 40px 20px;
@@ -529,6 +547,7 @@ body {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 16px;
           @media (max-width: $tablet) {
             margin-top: 20px;
             align-items: start;
@@ -538,8 +557,11 @@ body {
             font-weight: 600;
             line-height: 1;
             letter-spacing: -0.03em;
-            @media (max-width: $tablet) {
-              max-width: 271px;
+            //@media (max-width: $tablet) {
+            //  max-width: 271px;
+            //}
+            @media (max-width: $mobile) {
+              line-height: 1.5;
             }
           }
           img {
@@ -559,6 +581,17 @@ body {
             letter-spacing: -0.03em;
             color: #828282;
             padding-bottom: 50px;
+            a {
+              //display: block;
+              color: #828282;
+              &:hover {
+                text-decoration: none;
+              }
+              &.block-link {
+                display: block;
+                width: fit-content;
+              }
+            }
           }
         }
       }
@@ -567,12 +600,15 @@ body {
 }
 
 .listen {
-  padding-top: 200px;
+  padding-top: 100px;
+  margin-top: 100px;
   @media (max-width: $tablet) {
-    padding-top: 120px;
+    padding-top: 60px;
+    margin-top: 60px;
   }
   @media (max-width: $mobile) {
-    padding-top: 100px;
+    padding-top: 50px;
+    margin-top: 50px;
   }
   h2 {
     font-size: 50px;
@@ -639,7 +675,13 @@ body {
             height: 195px;
           }
           .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             img {
+              object-position: center;
+              display: block;
+              margin: 0 auto;
               @media (max-width: $mobile) {
                 max-width: 133px;
                 max-height: 21px;
@@ -653,12 +695,14 @@ body {
 }
 
 .videos {
-  padding-top: 200px;
+  padding-top: 100px;
+  margin-top: 100px;
   @media (max-width: $tablet) {
-    padding-top: 120px;
+    padding-top: 60px;
+    margin-top: 60px;
   }
   @media (max-width: $mobile) {
-    padding-top: 100px;
+    padding-top: 20px;
   }
   h2 {
     text-transform: uppercase;
@@ -672,11 +716,20 @@ body {
     @media (max-width: $mobile) {
       font-size: 35px;
     }
+    br {
+      display: none;
+      @media (max-width: $mobile) {
+        display: block;
+      }
+    }
   }
   a {
     cursor: pointer;
     &:hover .backdrop {
       opacity: 1;
+      @media (max-width: 1000px) {
+        opacity: 0;
+      }
     }
   }
   .video-single {
@@ -767,12 +820,15 @@ body {
 }
 
 .download {
-  padding-top: 200px;
+  padding-top: 100px;
+  margin-top: 100px;
   @media (max-width: $tablet) {
-    padding-top: 120px;
+    padding-top: 60px;
+    margin-top: 60px;
   }
   @media (max-width: $mobile) {
-    padding-top: 100px;
+    padding-top: 50px;
+    margin-top: 50px;
   }
   h2 {
     text-transform: uppercase;
@@ -801,7 +857,8 @@ body {
       &:last-child {
         border-bottom: 1px solid #333333;
       }
-      @media (max-width: 700px) {
+      @media (max-width: $tablet) {
+        padding: 40px 0;
         flex-direction: column;
         align-items: start;
         gap: 16px;
